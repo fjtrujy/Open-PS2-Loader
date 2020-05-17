@@ -15,7 +15,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apk add build-base git
+        apk add build-base git zlib-dev
         git clone https://github.com/ps2dev/ps2-packer
         cd ps2-packer
         make all install
