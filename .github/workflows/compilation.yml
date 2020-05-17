@@ -19,4 +19,4 @@ jobs:
 
     - name: Compile project
       run: |
-        make clean all
+        make clean opl.elf
