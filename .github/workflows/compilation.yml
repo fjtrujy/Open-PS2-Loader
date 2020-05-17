@@ -16,7 +16,11 @@ jobs:
     - name: Install dependencies
       run: |
         apk add build-base git
+        git clone https://github.com/ps2dev/ps2-packer
+        cd ps2-packer
+        make all install
+        cd ..
 
     - name: Compile project
       run: |
-        make clean opl.elf
+        make clean release
