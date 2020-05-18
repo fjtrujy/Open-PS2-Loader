@@ -29,5 +29,5 @@ jobs:
       if: ${{ success() }}
       uses: actions/upload-artifact@v2
       with:
-        name: opl-${{ steps.slug.outputs.sha8 }}
+        name: OPNPS2LD-${{ steps.slug.outputs.sha8 }}
         path: OPNPS2LD-*.ZIP
