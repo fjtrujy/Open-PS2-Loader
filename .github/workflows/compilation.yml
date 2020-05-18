@@ -9,18 +9,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ps2dev/ps2sdk-ports:latest
+    container: ps2dev/ps2dev:latest
     steps:
     - uses: actions/checkout@v2
 
     - name: Install dependencies
       run: |
-        apk add build-base git zlib-dev ucl-dev
-        git clone https://github.com/ps2dev/ps2-packer
-        cd ps2-packer
-        make all install
-        cd ..
+        apk add build-base git
 
     - name: Compile project
       run: |
         make clean release
+
+    - name: Get short SHA
+      id: slug
+      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+
+    - name: Upload artifacts
+      if: ${{ success() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: opl-${{ steps.slug.outputs.sha8 }}
+        path: OPNPS2LD-*.ZIP
