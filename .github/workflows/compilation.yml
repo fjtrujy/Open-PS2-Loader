@@ -19,6 +19,14 @@ jobs:
 
     - name: Compile project
       run: |
+        make clean opl.elf
+        make IGS=1 clean opl.elf
+        make PADEMU=1 clean opl.elf
+        make IGS=1 PADEMU=1 clean opl.elf
+        make DEBUG=1 clean opl.elf
+        make DEBUG=1 IOPCORE_DEBUG=1 clean opl.elf
+        make DEBUG=1 EESIO_DEBUG=1 clean opl.elf
+        make DEBUG=1 INGAME_DEBUG=1 clean opl.elf
         make clean release
 
     - name: Get short SHA
